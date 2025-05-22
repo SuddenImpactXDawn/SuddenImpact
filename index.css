@@ -1,0 +1,339 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import './styles/iframe-container.css';
+
+@layer base {
+  :root {
+    --background: 226 71% 98%;
+    --foreground: 226 100% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 226 100% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 226 100% 10%;
+    --primary: 252 56% 57%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 214 32% 91%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 253 94% 67%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 252 56% 57%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 252 56% 57%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 253 94% 67%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 252 56% 57%;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  }
+  
+  * {
+    @apply border-border selection:bg-brand-purple/20 selection:text-brand-purple;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased overflow-x-hidden;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-violet;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-r from-brand-indigo to-brand-violet;
+  }
+  
+  .pink-aqua-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-pink to-brand-aqua;
+  }
+  
+  .aqua-pink-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-aqua to-brand-pink;
+  }
+  
+  .modern-gradient-text {
+    @apply bg-clip-text text-transparent bg-modern-gradient;
+  }
+  
+  .pink-aqua-bg {
+    @apply bg-gradient-to-r from-brand-pink to-brand-aqua;
+  }
+  
+  .aqua-pink-bg {
+    @apply bg-gradient-to-r from-brand-aqua to-brand-pink;
+  }
+  
+  .hero-gradient {
+    @apply bg-gradient-to-br from-brand-darkPurple via-brand-purple to-brand-indigo/90;
+  }
+
+  .modern-hero-gradient {
+    @apply bg-gradient-to-br from-brand-pink via-brand-purple to-brand-aqua/90;
+  }
+  
+  .feature-card {
+    @apply p-4 md:p-6 rounded-xl border border-white/10 backdrop-blur-lg bg-white/5 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:bg-white/10;
+  }
+
+  .nav-link {
+    @apply text-gray-300 hover:text-white transition-colors duration-200;
+  }
+  
+  .btn-primary {
+    @apply pink-aqua-bg text-white font-medium py-2 px-3 md:py-2 md:px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5;
+  }
+  
+  .btn-secondary {
+    @apply bg-white/5 backdrop-blur-lg text-white border border-white/20 font-medium py-2 px-3 md:py-2 md:px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10;
+  }
+  
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
+  }
+  
+  .section-light {
+    @apply bg-white/90 text-gray-800 py-12 md:py-16;
+  }
+  
+  .card-light {
+    @apply bg-white shadow-md border border-gray-100 rounded-xl p-6;
+  }
+  
+  .section-padding {
+    @apply py-8 md:py-12 lg:py-16 xl:py-24;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Responsive text classes */
+  .text-responsive-xl {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  .text-responsive-lg {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+  
+  .text-responsive-md {
+    @apply text-lg md:text-xl lg:text-2xl;
+  }
+  
+  .text-responsive-sm {
+    @apply text-base md:text-lg lg:text-xl;
+  }
+
+  /* Card styles */
+  .modern-card {
+    @apply relative bg-white rounded-2xl shadow-xl overflow-hidden border border-brand-pink/10 hover:border-brand-aqua/20 transition-all duration-300;
+  }
+
+  .modern-card-gradient {
+    @apply absolute inset-0 bg-gradient-to-br from-brand-pink/5 to-brand-aqua/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+  }
+
+  .modern-card-header {
+    @apply h-2 bg-gradient-to-r from-brand-pink to-brand-aqua;
+  }
+  
+  .gradient-border-card {
+    @apply relative p-6 rounded-xl bg-white before:absolute before:inset-0 before:p-[2px] before:bg-gradient-to-r before:from-brand-pink before:to-brand-aqua before:rounded-xl before:-z-10;
+  }
+  
+  .fancy-card {
+    @apply relative bg-white p-6 rounded-xl border border-transparent shadow-lg overflow-hidden;
+  }
+  
+  .fancy-card:before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-pink to-brand-aqua;
+  }
+  
+  /* Custom scrollbar for pricing feature lists */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #EC4899, #06B6D4);
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #EC4899 transparent;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(139, 92, 246, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.6); }
+  100% { box-shadow: 0 0 5px rgba(139, 92, 246, 0.2); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s infinite;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Media query for responsiveness adjustments */
+@media (max-width: 640px) {
+  .animate-float, .animate-glow, .animate-pulse-slow {
+    animation: none; /* Disable animations on small screens for better performance */
+  }
+}
+
+@layer utilities {
+  /* Add will-change hints for animations */
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .will-change-opacity {
+    will-change: opacity;
+  }
+  
+  /* Disable animations on mobile for better performance */
+  @media (max-width: 640px) {
+    .animate-float, 
+    .animate-glow, 
+    .animate-pulse-slow {
+      animation: none;
+    }
+  }
+  
+  /* Optimize image loading */
+  .image-rendering-optimize {
+    image-rendering: optimizeSpeed;
+  }
+  
+  /* Optimize animations */
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  .gpu-accelerate {
+    transform: translateZ(0);
+  }
+  
+  /* New utility classes for improved UI */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .shadow-soft {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .light-section-divider {
+    @apply relative overflow-hidden bg-white py-16;
+  }
+  
+  .light-section-divider::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-12 bg-gradient-to-b from-black/5 to-transparent;
+  }
+
+  .modern-glow {
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.2);
+  }
+  
+  .aqua-glow {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+  }
+  
+  .glass-effect {
+    @apply backdrop-blur-lg bg-white/10 border border-white/20;
+  }
+
+  .gradient-border {
+    border-image: linear-gradient(to right, #EC4899, #06B6D4) 1;
+  }
+
+  .gradient-hover {
+    @apply relative overflow-hidden;
+  }
+
+  .gradient-hover::after {
+    @apply content-[''] absolute inset-0 bg-gradient-to-r from-brand-pink/10 to-brand-aqua/10 opacity-0 transition-opacity duration-300;
+  }
+
+  .gradient-hover:hover::after {
+    @apply opacity-100;
+  }
+}
